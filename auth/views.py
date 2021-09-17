@@ -4,7 +4,7 @@ from django.http.response import JsonResponse
 import json
 from django.contrib.auth import authenticate, login, logout
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from django.http.response import HttpResponse
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
 
@@ -27,7 +27,10 @@ def login_user(request):
     else:
         return JsonResponse({"message":"login failed !"}, status = 403)
 
-
+def checklogin(request):
+    if request.user.is_authenticated:
+        return HttpResponse(status = 200)
+    return HttpResponse(status=403)
 
 @csrf_exempt
 def logout_user(request):
