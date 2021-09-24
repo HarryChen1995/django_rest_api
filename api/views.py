@@ -23,7 +23,7 @@ def index(request):
         serializer = UserSerilizer(user)
         return JsonResponse(serializer.data)
     else:
-        return JsonResponse({"message":"your are not logged in !"}, status = 403)
+        return JsonResponse({"message":"your are not logged in !"}, status = 401)
 
     
 

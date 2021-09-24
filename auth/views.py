@@ -25,7 +25,7 @@ def login_user(request):
         login(request, user)
         return JsonResponse(get_tokens_for_user(user))
     else:
-        return JsonResponse({"message":"login failed !"}, status = 403)
+        return JsonResponse({"message":"login failed !"}, status = 401)
 
 def checklogin(request):
     if request.user.is_authenticated:
