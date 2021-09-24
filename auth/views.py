@@ -30,7 +30,7 @@ def login_user(request):
 def checklogin(request):
     if request.user.is_authenticated:
         return HttpResponse(status = 200)
-    return HttpResponse(status=403)
+    return HttpResponse(status=401)
 
 @csrf_exempt
 def logout_user(request):
