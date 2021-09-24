@@ -32,10 +32,11 @@ def checklogin(request):
         return HttpResponse(status = 200)
     return HttpResponse(status=401)
 
-@csrf_exempt
 def logout_user(request):
-    logout(request)
-    return JsonResponse({"message":"you are logged out !"})
+    if request.user.is_authenticated:
+        logout(request)
+        return JsonResponse({"message":"you are logged out !"})
+    return JsonResponse({"message":"logout failed !"}, status_code = 403)
 
 @csrf_exempt
 def signup(request):
