@@ -10,7 +10,6 @@ class MessageView(APIView):
 
     def get(self, request):
         message = Message(content='foo bar')
-        message.save()
         serializer = MessageSerializer(message)
         return Response(serializer.data)
 
